@@ -1,0 +1,361 @@
+/* Base Styles and Variables */
+:root {
+    /* Light Theme Colors */
+    --primary-color: #4a6fa5;
+    --secondary-color: #6b8cae;
+    --accent-color: #ff6b6b;
+    --background-color: #f8f9fa;
+    --card-bg-color: #ffffff;
+    --text-color: #333333;
+    --border-color: #e0e0e0;
+    --input-bg: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --chart-grid-color: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+    /* Dark Theme Colors */
+    --primary-color: #5c88c5;
+    --secondary-color: #7fa3d7;
+    --accent-color: #ff8585;
+    --background-color: #1a1a2e;
+    --card-bg-color: #242444;
+    --text-color: #e6e6e6;
+    --border-color: #444466;
+    --input-bg: #2d2d52;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --chart-grid-color: rgba(255, 255, 255, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header Styles */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+h1, h2, h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+/* Theme Toggle Switch */
+.theme-toggle {
+    display: flex;
+    align-items: center;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    margin-right: 10px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: var(--primary-color);
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px var(--primary-color);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.hidden {
+    display: none;
+}
+
+/* User Information Styles */
+.user-info-container {
+    background-color: var(--card-bg-color);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px var(--shadow-color);
+    margin-bottom: 30px;
+}
+
+.user-summary {
+    margin-bottom: 20px;
+}
+
+.user-card {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.user-card h3 {
+    color: white;
+}
+
+.user-card p {
+    color: white;
+    font-size: 18px;
+}
+
+.btn-small {
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.btn-small:hover {
+    background-color: var(--primary-color);
+}
+
+/* Main Layout */
+main {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+}
+
+/* Form Styles */
+.expense-input-section {
+    background-color: var(--card-bg-color);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px var(--shadow-color);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    font-size: 16px;
+}
+
+.btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    width: 100%;
+}
+
+.btn:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Dashboard Styles */
+.dashboard-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.summary-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.card {
+    background-color: var(--card-bg-color);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px var(--shadow-color);
+    text-align: center;
+}
+
+.card p {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--accent-color);
+}
+
+.filter-controls {
+    background-color: var(--card-bg-color);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px var(--shadow-color);
+}
+
+.filter-options {
+    display: flex;
+    gap: 15px;
+}
+
+.filter-options .form-group {
+    flex: 1;
+}
+
+.charts-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.chart-card {
+    background-color: var(--card-bg-color);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px var(--shadow-color);
+}
+
+.chart-wrapper {
+    height: 300px;
+    position: relative;
+}
+
+/* Expenses Table */
+.expenses-list-container {
+    background-color: var(--card-bg-color);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px var(--shadow-color);
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+th {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+tr:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.delete-btn {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Footer */
+footer {
+    margin-top: 40px;
+    text-align: center;
+    padding: 20px 0;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-color);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    main {
+        grid-template-columns: 1fr;
+    }
+    
+    .charts-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .summary-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .filter-options {
+        flex-direction: column;
+    }
+    
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .theme-toggle {
+        margin-top: 15px;
+    }
+}
